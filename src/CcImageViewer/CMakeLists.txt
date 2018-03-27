@@ -1,0 +1,32 @@
+SET(THIS_LIB_NAME CcImageViewer)
+
+ADD_DEFINITIONS("-DMAKE_CCIMAGEVIEWER_DLL")
+########################################### GRAB SOURCE FILES ##########################################
+FILE(GLOB THIS_LIB_SRCS RELATIVE_PATH ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+									)
+																										
+
+############################### GRAB HEADERS #####################################
+FILE(GLOB THIS_LIB_HEADERS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" 
+									"${CMAKE_CURRENT_SOURCE_DIR}/../../include/CcImageViewer/*.h"
+									)								
+                  
+#IF(WIN32)         
+#	LIST(APPEND THIS_LIB_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/dllMain.cpp")
+#ENDIF(WIN32)
+
+FIND_PACKAGE(Qt4 REQUIRED)
+
+INCLUDE_DIRECTORIES(${QT_INCLUDES})
+
+SET(CMAKE_AUTOMOC ON)
+SET(CMAKE_AUTOUIC ON)
+SET(CMAKE_AUTORCC ON)
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../include)
+
+ADD_LIBRARY(${THIS_LIB_NAME} SHARED ${THIS_LIB_SRCS} ${THIS_LIB_HEADERS})
+
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
+
+TARGET_LINK_LIBRARIES(${THIS_LIB_NAME} Qt4::QtCore Qt4::QtGui)
