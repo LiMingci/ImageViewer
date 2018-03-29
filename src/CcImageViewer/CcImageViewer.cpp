@@ -3,6 +3,11 @@
 #include <QtGui/QPixmap>
 #include <QtGui/QGraphicsScene>
 #include <QtGui/QGraphicsPixmapItem>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QDropEvent>
+#include <QtGui/QPushButton>
+#include <QtCore/QUrl>
+
 
 #include "CcImageViewer/CcImageViewer.h"
 #include "CcImageViewer/CcGraphicsView.h"
@@ -15,7 +20,11 @@ CcImageViewer::CcImageViewer(QWidget* parent/* = 0*/, Qt::WindowFlags f/* = 0*/ 
 
 CcImageViewer::~CcImageViewer()
 {
-
+	if (_graphicsView)
+	{
+		delete _graphicsView;
+		_graphicsView = NULL;
+	}
 
 }
 
@@ -28,8 +37,18 @@ void CcImageViewer::initUI()
 	hlayout->addWidget(_graphicsView);
 	hlayout->setSpacing(0);
 	hlayout->setMargin(0);
-
+	
 	this->setLayout(hlayout);
+
+	//_okButton = new QPushButton(tr("OK"), this);
+	//_okButton->setGeometry(100, 100, 30, 20);
+
+	//QHBoxLayout* hlayout1 = new QHBoxLayout(this);
+	//hlayout1->addWidget(_okButton);
+	////hlayout1->raise();
+
+	_graphicsView->setAcceptDrops(false);    //一定要设置_graphicsView不接受拖拽事件
+	this->setAcceptDrops(true);
 }
 
 
@@ -65,5 +84,25 @@ bool CcImageViewer::showImage(QString imagepath)
 	_graphicsView->setScene( myScene );
 
 	return true;
+
+}
+
+void CcImageViewer::dragEnterEvent(QDragEnterEvent * event)
+{
+	if (event->mimeData()->hasFormat("text/uri-list"))
+	{
+		event->acceptProposedAction();
+	}
+}
+
+void CcImageViewer::dropEvent(QDropEvent * event)
+{
+	QList<QUrl> urls = event->mimeData()->urls();
+	if (urls.isEmpty()) return;
+
+	QString filepath = urls.first().toLocalFile();
+	if (filepath.isEmpty()) return;
+
+	showImage(filepath);
 
 }

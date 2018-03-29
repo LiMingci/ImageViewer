@@ -7,6 +7,7 @@
 #include <QtGui/QMessageBox>
 #include <QtGui/QFileDialog>
 
+
 #include "CcMainWin.h"
 
 CcMainWin::CcMainWin(QWidget *parent, Qt::WFlags flags)
@@ -56,5 +57,5 @@ void CcMainWin::on_action_openImg_triggered()
 	if (!isok)
 		QMessageBox::warning(this, tr("Warning"), tr("Open Image Faile!"), QMessageBox::Ok);
 
-
 }
+

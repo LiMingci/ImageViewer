@@ -20,8 +20,6 @@ public:
 	CcMainWin(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~CcMainWin();
 
-
-
 private slots:
 	void on_action_openImg_triggered();
 

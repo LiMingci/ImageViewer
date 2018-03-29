@@ -11,9 +11,13 @@
 
 #include <QtGui/QWidget>
 
+
 #include "CcImageViewer/export.h"
 
 class QGraphicsView;
+class QDragEnterEvent;
+class QDropEvent;
+class QPushButton;
 class IMGVIEWER_API CcImageViewer : public QWidget
 {
 	Q_OBJECT
@@ -23,6 +27,11 @@ public:
 	~CcImageViewer();
 
 	bool showImage(QString imagepath);
+
+protected:
+	void dragEnterEvent(QDragEnterEvent * event);
+
+	void dropEvent(QDropEvent * event);
 
 signals:
 
@@ -37,6 +46,8 @@ private:
 
 private:
 	QGraphicsView*     _graphicsView;
+
+	//QPushButton*       _okButton;
 
 };
 

@@ -4,7 +4,6 @@
 
 CcGraphicsView::CcGraphicsView(void)
 {
-	//this->setFixedSize(300,300);
 	this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
 	this->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
 	this->setBackgroundRole(QPalette::Dark);
@@ -22,7 +21,7 @@ CcGraphicsView::~CcGraphicsView(void)
 
 void CcGraphicsView::wheelEvent(QWheelEvent *event)
 {
-	qreal scaleFactor = pow((double)2, -event->delta() / 240.0);
+	qreal scaleFactor = pow((double)2, -event->delta() / 200.0);
 	qreal factor = transform().scale(scaleFactor, scaleFactor).mapRect(QRectF(0, 0, 1, 1)).width();
 
 	if (factor < 0.01 || factor > 100) 
