@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/CcMainWin">
+        <file>back.png</file>
+        <file>exit.png</file>
+        <file>next.png</file>
+        <file>open.png</file>
+    </qresource>
+</RCC>
