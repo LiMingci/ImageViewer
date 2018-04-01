@@ -6,10 +6,11 @@ CcGraphicsView::CcGraphicsView(void)
 {
 	this->setHorizontalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
 	this->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff );
-	this->setBackgroundRole(QPalette::Dark);
 	this->setCursor(Qt::OpenHandCursor);
 	//this->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
 
+	//this->setBackgroundRole(QPalette::Dark);
+	this->setStyleSheet("background-color:black;");
 	m_isLeftButtonPress = false;
 
 }

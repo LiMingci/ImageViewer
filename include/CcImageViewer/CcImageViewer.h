@@ -47,8 +47,6 @@ private:
 private:
 	QGraphicsView*     _graphicsView;
 
-	//QPushButton*       _okButton;
-
 };
 
 

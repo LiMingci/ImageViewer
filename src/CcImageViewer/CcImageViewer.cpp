@@ -37,15 +37,9 @@ void CcImageViewer::initUI()
 	hlayout->addWidget(_graphicsView);
 	hlayout->setSpacing(0);
 	hlayout->setMargin(0);
-	
 	this->setLayout(hlayout);
 
-	//_okButton = new QPushButton(tr("OK"), this);
-	//_okButton->setGeometry(100, 100, 30, 20);
-
-	//QHBoxLayout* hlayout1 = new QHBoxLayout(this);
-	//hlayout1->addWidget(_okButton);
-	////hlayout1->raise();
+	this->setStyleSheet("border: none");
 
 	_graphicsView->setAcceptDrops(false);    //一定要设置_graphicsView不接受拖拽事件
 	this->setAcceptDrops(true);
